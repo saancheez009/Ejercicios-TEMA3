@@ -15,7 +15,11 @@ public class Ejercicio4 {
 		public static void main(String[] args) {
 			//Declaramos las variables num1 y num2
 			int num1; //Estas variables son los números introducidos por el usuario , de los que el sistema mostrará su máximo común divisor
-			int num2;
+			int num2; 
+			
+			//Estas otras dos variables están dentro del for
+			 int i; //La i la declaramos fuera del for para luego poder mostrarla dentro del if
+			 int menor; //Esta variable la utilizaremos para un operador ternario y saber cual de los dos números es menor
 			
 			//Introducimos e importamos el scanner para poder leer el teclado
 			Scanner sc = new Scanner(System.in);
@@ -26,16 +30,17 @@ public class Ejercicio4 {
 			System.out.println("Ingrese su segundo número para calcular el máximo común divisor");
 		    num2=sc.nextInt(); //Leemos el número
 		    
-		    //Mediante el condicional while declaramos que solo se realizará el bucle si los números introducidos son distintos
-		    while(num1 != num2) {
-		         if(num1>num2) { //Si el primer numero es mayor , se le resta al primer número el segundo número para calcular su mcd
-		             num1= num1-num2;
-		         } else {  //Si lo dicho anteriormente no se cumple, al segundo número introducido se le resta el primer número introducido para calcular el mcd
-		                num2= num2 -num1;
-		         }
-		       }
-		    //Le mostramos al usuario el máximo común divisor de los dos números
-		    System.out.println("El máximo común divisor  es: "+num1); 
+		   //Hacemos un operador ternario para saber que número es el menor 
+		    menor=num1<num2?num1:num2;
+		    
+		    //Introducimos un for en el que a i le damos el valor del número menor
+		    for ( i=menor;i>0;i--) {
+		    	if(num1%i==0 && num2%i==0) {   //Si el resto de la división de cada número introducido entre el número menor es 0 i es el máximo común divisor
+		    		System.out.println("El máximo común divisor es "+i);
+		    		break;  //Para que solo nos muestre el máximo común divisor ponemos un break
+		    	}
+		    }
+		    
 		    
 		    sc.close(); //Cerramos el scanner
 		}
